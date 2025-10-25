@@ -3,15 +3,15 @@
 vtex lets you instantly run the contents of your current Vim or Neovim buffer inside the first open terminal buffer — no leaving the editor, no switching windows.
 Just press Shift + F8, and your script runs.
 
-
-
 ## Features
 
-- Run the current buffer in an existing terminal buffer.
+- Run the current buffer in an existing terminal buffer
 
-- Automatically detects file type and uses the right interpreter.
+- Automatically detects file type and uses the right interpreter
 
-- Saves the current buffer to a temporary file before execution.
+- Saves the current buffer to a temporary file before execution
+
+- Tested with Vim versions on Debian Bullseye, Bookworm and Trixie
 
 #### Supports:
 
@@ -29,26 +29,31 @@ Just press Shift + F8, and your script runs.
 
 - Lua (.lua)
 
-Tested on Vim ≥ 8.1 and Neovim ≥ 0.4.4
-
-
-
 ## Installation
 
 #### Using vim-plug
 
-Plug 'hwblx/vtex'
+Add `Plug 'hwblx/vsnt'` to your .vimrc.
 
+Install with `:PlugInstall`.
 
+#### Using packages (built-in)
+
+###### Vim
+
+git clone https://github.com/hwblx/vtex ~/.vim/pack/plugins/start/vtex
+
+###### Neovim
+
+git clone https://github.com/hwblx/vtex ~/.local/share/nvim/site/pack/plugins/start/vtex
 
 ## Setup
 
 If you’re configuring manually, just add this to your .vimrc or init.vim:
 
-nnoremap <S-F8> :call Vtex()<CR>
-inoremap <S-F8> <C-o>:call Vtex()<CR>
+nnoremap <S-F8> :call vtex#run()<CR>
 
-
+inoremap <S-F8> <C-o>:call vtex#run()<CR>
 
 ## Usage
 
