@@ -39,7 +39,7 @@ Install with `:PlugInstall`.
 
 #### Using packages (built-in)
 
-git clone https://github.com/hwblx/vtex ~/.vim/pack/plugins/start/vtex
+`git clone https://github.com/hwblx/vtex ~/.vim/pack/plugins/start/vtex`
 
 ## Setup
 
@@ -53,8 +53,8 @@ If you’re configuring manually, just add this to your .vimrc:
 
 Open a script file (.py, .js, .sh, etc.).
 
-Open a terminal buffer (:term).
+Open a terminal buffer (`:term`).
 
-Press Shift + F8 to execute the current buffer in that terminal.
+Press `Shift + F8` to execute the current buffer in that terminal.
 
-Your code will run in the first open terminal buffer listed by :echo term_list().
+Your code will run in the first open terminal buffer listed by `:echo term_list()`.
