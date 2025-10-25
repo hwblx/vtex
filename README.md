@@ -1,6 +1,6 @@
 # vtex — Vim Terminal Executor
 
-vtex lets you instantly run the contents of your current Vim or Neovim buffer inside the first open terminal buffer — no leaving the editor, no switching windows.
+vtex lets you instantly run the contents of your current Vim buffer inside the first open terminal buffer — no leaving the editor, no switching windows.
 Just press Shift + F8, and your script runs.
 
 ## Features
@@ -39,17 +39,11 @@ Install with `:PlugInstall`.
 
 #### Using packages (built-in)
 
-###### Vim
-
 git clone https://github.com/hwblx/vtex ~/.vim/pack/plugins/start/vtex
-
-###### Neovim
-
-git clone https://github.com/hwblx/vtex ~/.local/share/nvim/site/pack/plugins/start/vtex
 
 ## Setup
 
-If you’re configuring manually, just add this to your .vimrc or init.vim:
+If you’re configuring manually, just add this to your .vimrc:
 
 nnoremap <S-F8> :call vtex#run()<CR>
 
