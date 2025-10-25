@@ -47,7 +47,7 @@ If you’re configuring manually, just add this to your .vimrc:
 
 `nnoremap <S-F8> :call vtex#run()<CR>`
 
-`inoremap <S-F8> <C-o>:call vtex#run()<CR>`
+`inoremap <S-F8> <C-o> :call vtex#run()<CR>`
 
 ## Usage
 
