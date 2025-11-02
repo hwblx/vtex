@@ -2,8 +2,41 @@
 " Filename: autoload/vtex.vim
 " Author: hwblx
 " License: MIT License
-" Last Change: 2025/10/24
+" Last Change: 2025/11/02
 " =====================================
+let s:term_bufs = {}
+let s:prev_win_id = -1
+
+augroup MyTerminals
+  autocmd!
+  " Register terminal with its associated window
+  autocmd WinLeave * let s:prev_win_id = win_getid()
+
+  autocmd TerminalWinOpen *
+        \ if s:prev_win_id > 0 |
+        \   let s:term_bufs[s:prev_win_id] = bufnr() |
+        \ endif
+augroup END
+
+
+function! vtex#send(command)
+  let s:save_cpo = &cpo
+  set cpo&vim
+
+  if !empty(term_list())
+    " Lookup the terminal associated with the current window
+    let term_obj = get(get(s:, 'term_bufs', {}), win_getid(), -1)
+    let idx = index(term_list(), term_obj)
+    "echo s:prev_win_id s:term_bufs term_list() idx
+    
+    execute 'call term_list()[idx >= 0 ? idx : 0]->term_sendkeys(a:command . "\<CR>")'
+  else
+    echo "No terminal buffer open or terminal feature unsupported!"
+  endif
+
+  let &cpo = s:save_cpo
+endfunction
+
 
 function! vtex#run()
   let s:save_cpo = &cpo
@@ -42,15 +75,23 @@ function! vtex#run()
   " Save buffer to temp file
   execute 'silent! write!' fnameescape(script)
 
-  " Build command string
+  " Build command
   let command = interpreter . ' ' . fnameescape(script)
+  
+  " Send command to the terminal
+  call vtex#send(command)
 
-  " Send to the first terminal buffer (string-evaluated for Vim 8.0 safety)
-  if exists('*term_list')
-    execute 'call term_list()[0]->term_sendkeys(command . "\<CR>")'
-  else
-    echo "No terminal buffer open or terminal feature unsupported!"
-  endif
+  let &cpo = s:save_cpo
+endfunction
+
+
+function! vtex#clear()
+  let s:save_cpo = &cpo
+  set cpo&vim
+
+  " clear terminal
+  let command = "clear"
+  call vtex#send(command)
 
   let &cpo = s:save_cpo
 endfunction

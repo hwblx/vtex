@@ -1,6 +1,6 @@
 # vtex — Vim Terminal Executor
 
-vtex lets you instantly run the contents of your current Vim buffer inside the first open terminal buffer — no leaving the editor, no switching windows.
+vtex lets you instantly run the contents of your current Vim window inside its associated terminal buffer — no leaving the editor, no switching windows.
 Just press Shift + F8, and your script runs.
 
 ## Features
@@ -8,6 +8,10 @@ Just press Shift + F8, and your script runs.
 - Run the current buffer in an existing terminal buffer
 
 - Automatically detects file type and uses the right interpreter
+
+- Each Vim window can have its own associated terminal
+
+- Ideal for side-by-side testing and debugging
 
 - Saves the current buffer to a temporary file before execution
 
@@ -49,12 +53,18 @@ If you’re configuring manually, just add this to your .vimrc:
 
 `inoremap <S-F8> <C-o> :call vtex#run()<CR>`
 
+`nnoremap <S-F9> :call vtex#clear()<CR>`
+
+`inoremap <S-F9> <C-o> :call vtex#clear()<CR>`
+
 ## Usage
 
 Open a script file (.py, .js, .sh, etc.).
 
 Open a terminal buffer (`:term`).
 
-Press `Shift + F8` to execute the current buffer in that terminal.
+Press `Shift + F8` from the Vim window associated to the terminal.
 
-Your code will run in the first open terminal buffer listed by `:echo term_list()`.
+Your code will run in the terminal buffer.
+
+Clear the terminal pressing `Shift + F9`.

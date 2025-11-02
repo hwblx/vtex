@@ -2,9 +2,8 @@
 " Filename: plugin/vtex.vim
 " Author: hwblx
 " License: MIT License
-" Last Change: 2025/10/24
+" Last Change: 2025/11/02
 " =====================================
-
 let s:save_cpo = &cpo
 set cpo&vim
 
@@ -55,8 +54,13 @@ if !s:sourced
 endif
 
 if exists('*vtex#run')
-  nnoremap <S-F8> :call vtex#run()<CR>
-  inoremap <S-F8> <C-o>:call vtex#run()<CR>
+  nnoremap <silent> <S-F8> :call vtex#run()<CR>
+  inoremap <silent> <S-F8> <C-o>:call vtex#run()<CR>
+endif
+
+if exists('*vtex#clear')
+  nnoremap <silent> <S-F9> :call vtex#clear()<CR>
+  inoremap <silent> <S-F9> <C-o>:call vtex#clear()<CR>
 endif
 
 let &cpo = s:save_cpo
