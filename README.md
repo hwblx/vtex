@@ -63,7 +63,7 @@ Open a script file (.py, .js, .sh, etc.).
 
 Open a terminal buffer (`:term`).
 
-Press `Shift + F8` from the Vim window associated to the terminal.
+Press `Shift + F8` from the Vim window associated with that terminal.
 
 Your code will run in the terminal buffer.
 
