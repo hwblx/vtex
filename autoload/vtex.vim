@@ -2,8 +2,11 @@
 " Filename: autoload/vtex.vim
 " Author: hwblx
 " License: MIT License
-" Last Change: 2025/11/02
+" Last Change: 2025/11/13
 " =====================================
+let s:save_cpo = &cpo
+set cpo&vim
+
 let s:term_bufs = {}
 let s:prev_win_id = -1
 
@@ -20,9 +23,6 @@ augroup END
 
 
 function! vtex#send(command)
-  let s:save_cpo = &cpo
-  set cpo&vim
-
   if !empty(term_list())
     " Lookup the terminal associated with the current window
     let term_obj = get(get(s:, 'term_bufs', {}), win_getid(), -1)
@@ -33,15 +33,10 @@ function! vtex#send(command)
   else
     echo "No terminal buffer open or terminal feature unsupported!"
   endif
-
-  let &cpo = s:save_cpo
 endfunction
 
 
 function! vtex#run()
-  let s:save_cpo = &cpo
-  set cpo&vim
-
   " Determine interpreter based on file extension
   let ext = expand('%:e')
 
@@ -68,7 +63,6 @@ function! vtex#run()
     let interpreter = 'lua'
   else
     echo "Unsupported file type: " . ext
-    let &cpo = s:save_cpo
     return
   endif
 
@@ -80,19 +74,14 @@ function! vtex#run()
   
   " Send command to the terminal
   call vtex#send(command)
-
-  let &cpo = s:save_cpo
 endfunction
 
 
 function! vtex#clear()
-  let s:save_cpo = &cpo
-  set cpo&vim
-
   " clear terminal
   let command = "clear"
   call vtex#send(command)
-
-  let &cpo = s:save_cpo
 endfunction
+
+let &cpo = s:save_cpo
 

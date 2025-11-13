@@ -61,9 +61,9 @@ If you’re configuring manually, just add this to your .vimrc:
 
 Open a script file (.py, .js, .sh, etc.).
 
-Open a terminal buffer (`:term`).
+Open a Vim terminal (`:term`).
 
-Press `Shift + F8` from the Vim window associated with that terminal.
+Press `Shift + F8` from the Vim window associated with this terminal.
 
 Your code will run in the terminal buffer.
 
